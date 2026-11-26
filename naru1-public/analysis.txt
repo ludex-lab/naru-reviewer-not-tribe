@@ -1,0 +1,37 @@
+table sha256 533bbeefe53af7581d8f7b8136c22b10efbc909a9a3d25082842269271c7c637 · rows 231
+last decisions: {'approve': 161, 'cannot_verify': 11, 'request_changes': 59} · rows with >1 decision: 19
+
+## 4.1 by producer tribe (pooled over reviewers) — the dashboard view
+  agy_cli     last 10/33 = 30.3%   first 10/33 = 30.3%
+  claude_cli  last 90/91 = 98.9%   first 88/91 = 96.7%
+  codex_cli   last 60/106 = 56.6%   first 61/106 = 57.5%
+  cursor_cli  last 1/1 = 100.0%   first 1/1 = 100.0%
+
+## 4.2 by reviewer, and producer tribe within reviewer (Wilson 95% intervals)
+  R1 (cursor_cli) all 130/132 = 98.5%  [94.6, 99.6]
+     agy_cli     5/5 = 100.0%       [56.6, 100.0]
+     claude_cli  90/91 = 98.9%      [94.0, 99.8]
+     codex_cli   35/36 = 97.2%      [85.8, 99.5]
+  R2 (claude_cli) all 31/99 = 31.3%  [23.0, 41.0]
+     agy_cli     5/28 = 17.9%       [7.9, 35.6]
+     codex_cli   25/70 = 35.7%      [25.5, 47.4]
+     cursor_cli  1/1 = 100.0%       [20.7, 100.0]
+
+## 4.2 reviewer contrast inside each tribe both reviewers saw (Fisher exact, two-sided)
+  codex_cli   R1 35/36 vs R2 25/70  p = 9.89e-11
+  agy_cli     R1 5/5 vs R2 5/28  p = 1.06e-03
+  tribe contrast inside R1 (claude vs codex vs agy): 90/91 = 98.9% · 35/36 = 97.2% · 5/5 = 100.0%
+  inside R1, claude 90/91 vs codex 35/36  p = 0.488
+  inside R2, codex 25/70 vs agy 5/28  p = 0.095
+
+## 4.3 the empty cell and the pairs
+  cells (producer tribe x reviewer): {('agy_cli', 'R1'): 5, ('agy_cli', 'R2'): 28, ('claude_cli', 'R1'): 91, ('codex_cli', 'R1'): 36, ('codex_cli', 'R2'): 70, ('cursor_cli', 'R2'): 1}
+  rows decided by both reviewers: 1
+
+## 4.3 by ISO week of the deciding lease (reviewer x week)
+  2026-W44  R1 -                   R2 0/4 = 0.0%        
+  2026-W45  R1 7/7 = 100.0%        R2 2/24 = 8.3%       
+  2026-W46  R1 57/59 = 96.6%       R2 15/47 = 31.9%     
+  2026-W47  R1 66/66 = 100.0%      R2 14/24 = 58.3%     
+  weeks where both decided (2026-W45, 2026-W46, 2026-W47): R1 130/132 = 98.5%
+  weeks where both decided (2026-W45, 2026-W46, 2026-W47): R2 31/95 = 32.6%

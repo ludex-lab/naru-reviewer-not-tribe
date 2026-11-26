@@ -1,0 +1,49 @@
+A	agy_cli	last	10/33	30.3%
+A	agy_cli	first	10/33	30.3%
+A	claude_cli	last	90/91	98.9%
+A	claude_cli	first	88/91	96.7%
+A	codex_cli	last	60/106	56.6%
+A	codex_cli	first	61/106	57.5%
+A	cursor_cli	last	1/1	100.0%
+A	cursor_cli	first	1/1	100.0%
+B	agy_cli	claude_cli	5/28	17.9%
+B	agy_cli	cursor_cli	5/5	100.0%
+B	claude_cli	cursor_cli	90/91	98.9%
+B	codex_cli	claude_cli	25/70	35.7%
+B	codex_cli	cursor_cli	35/36	97.2%
+B	cursor_cli	claude_cli	1/1	100.0%
+D	R1	130/132	98.5%
+D	R2	31/99	31.3%
+H	agy_cli	P14	R1	1/1	100.0%
+H	agy_cli	P14	R2	1/10	10.0%
+H	agy_cli	P15	R1	1/1	100.0%
+H	agy_cli	P15	R2	0/1	0.0%
+H	agy_cli	P16	R2	0/4	0.0%
+H	agy_cli	P17	R2	1/1	100.0%
+H	agy_cli	P18	R2	1/2	50.0%
+H	agy_cli	P19	R1	1/1	100.0%
+H	agy_cli	P19	R2	2/8	25.0%
+H	agy_cli	P20	R1	2/2	100.0%
+H	agy_cli	P20	R2	0/2	0.0%
+H	claude_cli	P08	R1	17/18	94.4%
+H	claude_cli	P09	R1	16/16	100.0%
+H	claude_cli	P10	R1	16/16	100.0%
+H	claude_cli	P11	R1	16/16	100.0%
+H	claude_cli	P12	R1	9/9	100.0%
+H	claude_cli	P13	R1	16/16	100.0%
+H	codex_cli	P01	R1	2/2	100.0%
+H	codex_cli	P01	R2	1/2	50.0%
+H	codex_cli	P02	R1	5/5	100.0%
+H	codex_cli	P02	R2	2/10	20.0%
+H	codex_cli	P03	R1	6/6	100.0%
+H	codex_cli	P03	R2	4/14	28.6%
+H	codex_cli	P04	R1	8/8	100.0%
+H	codex_cli	P04	R2	7/11	63.6%
+H	codex_cli	P05	R1	5/5	100.0%
+H	codex_cli	P05	R2	6/11	54.5%
+H	codex_cli	P06	R1	6/6	100.0%
+H	codex_cli	P06	R2	1/12	8.3%
+H	codex_cli	P07	R1	3/4	75.0%
+H	codex_cli	P07	R2	4/10	40.0%
+H	cursor_cli	P21	R2	1/1	100.0%
+F	two_reviewers	1

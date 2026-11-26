@@ -1,0 +1,86 @@
+사후 민감도 분석, 사전등록 아님 (Post-hoc sensitivity analysis; not pre-registered)
+source_table_sha256: 533bbeefe53af7581d8f7b8136c22b10efbc909a9a3d25082842269271c7c637 · rows: 231 · rng_seed: 20261125
+anonymization_check: IDs limited to R1/R2 and P01-P21; zero resident names, paths, or card IDs.
+
+## (a) 겹치는 칸만의 층화 비교 — (week x producer_tribe) [Review §3.1]
+### (a) 전체 결정 행 (All decisions) (overlapping strata = 4, rows in overlap = 111)
+  2026-W46  agy_cli     R1 2/2 = 100.0%        R2 2/15 = 13.3%        diff=+86.7 pp  Fisher p=0.04412
+  2026-W46  codex_cli   R1 11/12 = 91.7%       R2 12/31 = 38.7%       diff=+53.0 pp  Fisher p=0.002111
+  2026-W47  agy_cli     R1 3/3 = 100.0%        R2 1/2 = 50.0%         diff=+50.0 pp  Fisher p=0.4
+  2026-W47  codex_cli   R1 24/24 = 100.0%      R2 13/22 = 59.1%       diff=+40.9 pp  Fisher p=0.0004515
+  Pooled over overlap strata: R1 40/41 = 97.6% vs R2 28/70 = 40.0%
+  Mantel-Haenszel OR = 41.87 (RBG 95% CI [5.47, 320.33]) · MH weighted RD = +49.4 pp
+  Exact conditional CMH: S_obs=40 (support [17, 41]) · CMLE OR = 41.79 (exact 95% CI [6.21, 1798.96]) · exact two-sided p = 3.6079e-08 (one-sided upper p = 3.2725e-08)
+  [note] rows removed as cannot_verify across entire table: 11 (remaining 220)
+### (a) cannot_verify 제외 (Excluding cannot_verify) (overlapping strata = 4, rows in overlap = 109)
+  2026-W46  agy_cli     R1 2/2 = 100.0%        R2 2/14 = 14.3%        diff=+85.7 pp  Fisher p=0.05
+  2026-W46  codex_cli   R1 11/12 = 91.7%       R2 12/31 = 38.7%       diff=+53.0 pp  Fisher p=0.002111
+  2026-W47  agy_cli     R1 3/3 = 100.0%        R2 1/2 = 50.0%         diff=+50.0 pp  Fisher p=0.4
+  2026-W47  codex_cli   R1 24/24 = 100.0%      R2 13/21 = 61.9%       diff=+38.1 pp  Fisher p=0.000944
+  Pooled over overlap strata: R1 40/41 = 97.6% vs R2 28/68 = 41.2%
+  Mantel-Haenszel OR = 40.23 (RBG 95% CI [5.22, 310.06]) · MH weighted RD = +48.0 pp
+  Exact conditional CMH: S_obs=40 (support [18, 41]) · CMLE OR = 39.54 (exact 95% CI [5.85, 1704.98]) · exact two-sided p = 8.2833e-08 (one-sided upper p = 7.3586e-08)
+
+## (b) 결정 시점 민감도 — 표 2 재집계 (Wilson 95% CI) [Review §3.4]
+### (b1) n_decided == 1 행만 (Single-decision requests only) (n = 212)
+  R1 all        115/116 = 99.1%     Wilson 95% CI [95.3, 99.8]
+     agy_cli    5/5 = 100.0%        Wilson 95% CI [56.6, 100.0]
+     claude_cli 75/75 = 100.0%      Wilson 95% CI [95.1, 100.0]
+     codex_cli  35/36 = 97.2%       Wilson 95% CI [85.8, 99.5]
+  R2 all        31/96 = 32.3%       Wilson 95% CI [23.8, 42.2]
+     agy_cli    5/26 = 19.2%        Wilson 95% CI [8.5, 37.9]
+     codex_cli  25/69 = 36.2%       Wilson 95% CI [25.9, 48.0]
+     cursor_cli 1/1 = 100.0%        Wilson 95% CI [20.7, 100.0]
+  contrast codex_cli : R1 35/36 vs R2 25/69  Fisher two-sided p = 1.9544e-10
+  contrast agy_cli   : R1 5/5 vs R2 5/26  Fisher two-sided p = 1.4831e-03
+  [note] rows with two_reviewers == 'yes': 1 -> row 140 (2026-W46, codex_cli, P07, last_reviewer=R2, first=approve, last=request_changes)
+### (b2) 첫 결정 기준 (First decision; two_reviewers='yes' row attributed to first reviewer) (n = 231)
+  R1 all        129/133 = 97.0%     Wilson 95% CI [92.5, 98.8]
+     agy_cli    5/5 = 100.0%        Wilson 95% CI [56.6, 100.0]
+     claude_cli 88/91 = 96.7%       Wilson 95% CI [90.8, 98.9]
+     codex_cli  36/37 = 97.3%       Wilson 95% CI [86.2, 99.5]
+  R2 all        31/98 = 31.6%       Wilson 95% CI [23.3, 41.4]
+     agy_cli    5/28 = 17.9%        Wilson 95% CI [7.9, 35.6]
+     codex_cli  25/69 = 36.2%       Wilson 95% CI [25.9, 48.0]
+     cursor_cli 1/1 = 100.0%        Wilson 95% CI [20.7, 100.0]
+  contrast codex_cli : R1 36/37 vs R2 25/69  Fisher two-sided p = 9.1799e-11
+  contrast agy_cli   : R1 5/5 vs R2 5/28  Fisher two-sided p = 1.0618e-03
+
+## (c) 생산자 군집 민감도 — 생산자 내 짝비교 및 Cluster Bootstrap [Review §3.3]
+### (c1) 두 검토자를 모두 만난 생산자 내 R1 - R2 승인율 차이 (n_producers = 11)
+  P01 (codex_cli ): R1 2/2 = 100.0%       R2 1/2 = 50.0%        R1-R2 =  +50.0 pp
+  P02 (codex_cli ): R1 5/5 = 100.0%       R2 2/10 = 20.0%       R1-R2 =  +80.0 pp
+  P03 (codex_cli ): R1 6/6 = 100.0%       R2 4/14 = 28.6%       R1-R2 =  +71.4 pp
+  P04 (codex_cli ): R1 8/8 = 100.0%       R2 7/11 = 63.6%       R1-R2 =  +36.4 pp
+  P05 (codex_cli ): R1 5/5 = 100.0%       R2 6/11 = 54.5%       R1-R2 =  +45.5 pp
+  P06 (codex_cli ): R1 6/6 = 100.0%       R2 1/12 = 8.3%        R1-R2 =  +91.7 pp
+  P07 (codex_cli ): R1 3/4 = 75.0%        R2 4/10 = 40.0%       R1-R2 =  +35.0 pp
+  P14 (agy_cli   ): R1 1/1 = 100.0%       R2 1/10 = 10.0%       R1-R2 =  +90.0 pp
+  P15 (agy_cli   ): R1 1/1 = 100.0%       R2 0/1 = 0.0%         R1-R2 = +100.0 pp
+  P19 (agy_cli   ): R1 1/1 = 100.0%       R2 2/8 = 25.0%        R1-R2 =  +75.0 pp
+  P20 (agy_cli   ): R1 2/2 = 100.0%       R2 0/2 = 0.0%         R1-R2 = +100.0 pp
+  Paired diff summary (n=11): pos=11, zero=0, neg=0 · min=+35.0 pp, median=+75.0 pp, mean=+70.4 pp, max=+100.0 pp
+  Exact two-sided sign test (non-zero m=11): p = 0.000976562
+  Exact within-(producer x week) permutation/CMH (15 overlapping cells, 95 rows): S_obs=38 (support [17, 39]) · OR_MH=32.05 · exact CMLE OR=32.49 (95% CI [4.81, 1412.25]) · exact two-sided p = 4.9181e-07 · MH RD = +49.4 pp
+  Monte Carlo within-(producer x week) permutation on unweighted mean cell diff (B=100000, seed=20261125): obs=+51.7 pp, two-sided p = 0.00001
+### (c2) 생산자 단위 Cluster Bootstrap 95% CI (B = 20000, seed = 20261125)
+  All 21 producers (pooled R1-R2)        (clusters=21, valid=20000/20000): point=+67.2 pp · 95% CI [+54.1, +79.4] pp · SE=6.5 pp
+  codex_cli producers (all weeks)        (clusters= 7, valid=20000/20000): point=+61.5 pp · 95% CI [+45.7, +77.3] pp · SE=8.3 pp
+  agy_cli producers (all weeks)          (clusters= 7, valid=19947/20000): point=+82.1 pp · 95% CI [+65.0, +92.9] pp · SE=7.0 pp
+  W46-W47 codex+agy overlap producers    (clusters=14, valid=20000/20000): point=+57.6 pp · 95% CI [+42.7, +75.0] pp · SE=8.3 pp
+  11 both-reviewer producers (pooled)    (clusters=11, valid=20000/20000): point=+66.8 pp · 95% CI [+52.8, +80.6] pp · SE=7.1 pp
+
+## (d) 배정 쏠림 — W46·W47 생산자별 R1/R2 배정 동질성 검정 [Review §3.2]
+  [boundary] 표에 있는 (week, producer_tribe, producer, reviewer) 배정 빈도만 검정함; 원인(크기 상한·과업 종류)은 주장하지 않음.
+  2026-W46  codex_cli   total R1=12/43 (27.9%) · producers=6 · chi2=1.478 · exact-perm p=0.92376
+    per-producer R1/total: P02:1/5  P03:1/5  P04:3/8  P05:2/8  P06:4/11  P07:1/6
+  2026-W46  agy_cli     total R1=2/17 (11.8%) · producers=7 · chi2=10.578 · exact-perm p=0.21306
+    per-producer R1/total: P14:0/7  P15:1/1  P16:0/2  P17:0/1  P18:0/2  P19:1/3  P20:0/1
+  2026-W47  codex_cli   total R1=24/46 (52.2%) · producers=7 · chi2=0.815 · exact-perm p=1.00000
+    per-producer R1/total: P01:2/3  P02:4/7  P03:5/10  P04:5/11  P05:3/6  P06:2/3  P07:3/6
+  2026-W47  agy_cli     total R1=3/5 (60.0%) · producers=3 · chi2=2.222 · exact-perm p=1.00000
+    per-producer R1/total: P14:1/1  P19:0/1  P20:2/3
+  W46+W47  codex_cli   total R1=36/89 (40.4%) · producers=7 · chi2=1.303 · exact-perm p=0.97357
+    per-producer R1/total: P01:2/3  P02:5/12  P03:6/15  P04:8/19  P05:5/14  P06:6/14  P07:4/12
+  W46+W47  agy_cli     total R1=5/22 (22.7%) · producers=7 · chi2=7.053 · exact-perm p=0.38801
+    per-producer R1/total: P14:1/8  P15:1/1  P16:0/2  P17:0/1  P18:0/2  P19:1/4  P20:2/4
